@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416054120) do
+ActiveRecord::Schema.define(version: 20170507054347) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "name"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20170416054120) do
     t.string   "twitter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.text     "notes"
+    t.integer  "friend_id"
+    t.integer  "article_id"
+    t.boolean  "returned"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_loans_on_article_id"
+    t.index ["friend_id"], name: "index_loans_on_friend_id"
   end
 
 end
